@@ -9,6 +9,7 @@ import {
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import buyCars from "../Images/buyCars.jpg";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -34,19 +35,19 @@ const Login = () => {
   }, []);
 
   return (
-    <Box>
+    <Box bgImage={buyCars} bgSize="cover">
       <Text my={"5%"} fontSize={"4xl"} fontWeight="bold">
         Login
       </Text>
       <Box w="30%" margin={"auto"} py={"3%"}>
         <FormControl>
-          <FormLabel>Email:</FormLabel>
+          <FormLabel color={"white"}>Email:</FormLabel>
           <Input
             type={"text"}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           ></Input>
-          <FormLabel>Password:</FormLabel>
+          <FormLabel color={"white"}>Password:</FormLabel>
           <Input
             type={"password"}
             value={password}

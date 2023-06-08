@@ -27,7 +27,7 @@ const CarDetails = () => {
       </Text>
       <Box>
         {data.description?.map((e) => {
-          return <Text>◻︎ {e}</Text>;
+          return <Text key={e}>◻︎ {e}</Text>;
         })}
         <Image src={data.image} width="100%"></Image>
       </Box>

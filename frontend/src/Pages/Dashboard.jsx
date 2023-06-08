@@ -29,7 +29,6 @@ const Dashboard = () => {
   const [price, setPrice] = useState("");
   const [color, setColor] = useState("");
   const [mileage, setMileage] = useState("");
-  const [sortData, setSortData] = useState([]);
 
   const getOemData = () => {
     axios
@@ -293,8 +292,9 @@ const Dashboard = () => {
               boxShadow={"5px 5px 5px gray"}
               p="2%"
               height={"100%"}
+              key={e._id}
             >
-              <SingleCar key={e._id} {...e} />
+              <SingleCar {...e} />
               <Box
                 display="flex"
                 justifyContent={"space-evenly"}
