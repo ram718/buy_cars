@@ -23,7 +23,7 @@ const OemSpec = ({ year, price, power, mileage, max_speed, colors }) => {
         Colors:
         {colors.map((e) => {
           return (
-            <Text textAlign={"center"}>
+            <Text key={e} textAlign={"center"}>
               <span style={{ fontWeight: "bold" }}>{e}</span>
             </Text>
           );

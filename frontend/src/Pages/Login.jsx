@@ -20,7 +20,6 @@ const Login = () => {
     axios
       .post(`http://localhost:4500/login`, paylaod)
       .then((res) => {
-        console.log(res.data);
         localStorage.setItem("token", JSON.stringify(res.data.token));
         alert("Login succesfully");
         navigate("/dashboard");
@@ -60,7 +59,7 @@ const Login = () => {
           onClick={handleLogin}
           _hover={{ backgroundColor: "Black", color: "white" }}
         >
-          Signup
+          Login
         </Button>
       </Box>
     </Box>

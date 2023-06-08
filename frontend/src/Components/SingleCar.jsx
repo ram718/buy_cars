@@ -1,7 +1,5 @@
 import React from "react";
 import { Box, Text, Button } from "@chakra-ui/react";
-import CarDetails from "./CarDetails";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
@@ -16,7 +14,6 @@ const SingleCar = ({
   registration_place,
   number_of_previous_buyers,
 }) => {
-  const navigate = useNavigate();
   const [oemData, setOemData] = useState([]);
 
   const getOemData = () => {
@@ -26,51 +23,56 @@ const SingleCar = ({
       .catch((e) => console.log(e));
   };
 
-  const handleClick = (name) => {
-    localStorage.setItem("car_name", JSON.stringify(name));
-    navigate("/cardetails");
-  };
-
   useEffect(() => {
     getOemData();
   }, []);
 
   return (
-    <Box
-      textAlign={"left"}
-      margin="auto"
-      border={"1px solid black"}
-      p="2%"
-      height={"100%"}
-    >
+    <Box>
       <Text fontSize={"2xl"} fontWeight="semibold" textAlign={"center"}>
         {name}
       </Text>
       <Box display={"flex"} gap="20px">
-        <Box>
-          <Text>Dealer Specs</Text>
-          <Text>Kms on odometer: {kms_on_odometer}</Text>
-          <Text>Major scratches: {major_scratches}</Text>
-          <Text>Original paint: {original_paint}</Text>
-          <Text>Number of accidents: {number_of_accidents}</Text>
-          <Text>Number of previous_buyers: {number_of_previous_buyers}</Text>
-          <Text>Registration place: {registration_place}</Text>
+        <Box w={"100%"}>
+          <Text textAlign={"center"} fontWeight="semibold">
+            Dealer Specs
+          </Text>
+          <Text>
+            Kms on odometer:{" "}
+            <span style={{ fontWeight: "bold" }}>{kms_on_odometer} Kms</span>
+          </Text>
+          <Text>
+            Major scratches:{" "}
+            <span style={{ fontWeight: "bold" }}>{major_scratches}</span>
+          </Text>
+          <Text>
+            Original paint:{" "}
+            <span style={{ fontWeight: "bold" }}>{original_paint}</span>
+          </Text>
+          <Text>
+            Number of accidents:{" "}
+            <span style={{ fontWeight: "bold" }}>{number_of_accidents}</span>
+          </Text>
+          <Text>
+            Number of previous buyers:{" "}
+            <span style={{ fontWeight: "bold" }}>
+              {number_of_previous_buyers}
+            </span>
+          </Text>
+          <Text>
+            Registration place:{" "}
+            <span style={{ fontWeight: "bold" }}>{registration_place}</span>
+          </Text>
         </Box>
 
-        <Box>
-          <Text>OEM Specs</Text>
+        <Box w={"100%"}>
+          <Text textAlign={"center"} fontWeight="semibold">
+            OEM Specs
+          </Text>
           {oemData?.map((e) => {
             return <OemSpec key={e.name} {...e} />;
           })}
         </Box>
-      </Box>
-
-      <Box display="flex" justifyContent={"space-evenly"} marginTop="2%">
-        <Button variant={"ghost"} onClick={() => handleClick(name)}>
-          View Details
-        </Button>
-        <Button variant={"ghost"}>Edit</Button>
-        <Button variant={"ghost"}>Delete</Button>
       </Box>
     </Box>
   );
