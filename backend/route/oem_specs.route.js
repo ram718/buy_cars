@@ -16,7 +16,7 @@ oemRouter.post("/add", async (req, res) => {
 
 //Get API
 oemRouter.get("", async (req, res) => {
-  const { name, year } = req.query;
+  const { name, year, color } = req.query;
   try {
     if (name) {
       const data = await OemModel.find({ name: name });
@@ -27,6 +27,9 @@ oemRouter.get("", async (req, res) => {
     } else if (name && year) {
       const data = await OemModel.find({ name: name, year: year });
       res.status(200).send({ data: data, length: data.length });
+    } else if (color) {
+      const data = await OemModel.find({ colors: color });
+      res.status(200).send(data);
     } else {
       const data = await OemModel.find();
       res.status(200).send({ data: data, length: data.length });

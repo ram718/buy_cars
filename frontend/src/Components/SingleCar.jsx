@@ -70,7 +70,7 @@ const SingleCar = ({
             OEM Specs
           </Text>
           {oemData?.map((e) => {
-            return <OemSpec key={e.name} {...e} />;
+            return <OemSpec key={e.year} {...e} />;
           })}
         </Box>
       </Box>

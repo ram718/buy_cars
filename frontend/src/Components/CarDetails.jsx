@@ -22,12 +22,23 @@ const CarDetails = () => {
 
   return (
     <Box>
-      <Text>{name} Details</Text>
+      <Text fontSize={"3xl"} fontWeight="bold">
+        {name} Details
+      </Text>
       <Box>
-        <Text>Description : {data.description}</Text>
+        {data.description?.map((e) => {
+          return <Text>◻︎ {e}</Text>;
+        })}
         <Image src={data.image} width="100%"></Image>
       </Box>
-      <Button onClick={() => navigate("/dashboard")}>Dashboard</Button>
+      <Button
+        variant={"ghost"}
+        _hover={{ backgroundColor: "black", color: "white" }}
+        marginTop="2%"
+        onClick={() => navigate("/dashboard")}
+      >
+        Dashboard
+      </Button>
     </Box>
   );
 };

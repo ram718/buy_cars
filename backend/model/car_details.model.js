@@ -4,7 +4,7 @@ const carDetailsSchema = mongoose.Schema(
   {
     image: String,
     title: String,
-    description: String,
+    description: Array,
   },
   { versionKey: false }
 );

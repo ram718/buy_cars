@@ -24,6 +24,22 @@ const Dashboard = () => {
   const [buyers, setBuyers] = useState("");
   const [place, setPlace] = useState("");
   const [updateID, setUpdateID] = useState("");
+  const [oem, setOem] = useState("");
+  const [oemData, setOemData] = useState([]);
+  const [price, setPrice] = useState("");
+  const [color, setColor] = useState("");
+  const [mileage, setMileage] = useState("");
+  const [sortData, setSortData] = useState([]);
+
+  const getOemData = () => {
+    axios
+      .get(`http://localhost:4500/oem`)
+      .then((res) => {
+        setOem(res.data.length);
+        setOemData(res.data.data);
+      })
+      .catch((e) => console.log(e));
+  };
 
   const getAllData = () => {
     axios
@@ -57,6 +73,9 @@ const Dashboard = () => {
     const data = allData.filter((e) => e._id === id);
     setEditData(data);
     setUpdateID(id);
+    if (toggle === false) {
+      alert("Fill out the form on top to update the car details");
+    }
   };
 
   const handleUpdate = () => {
@@ -91,15 +110,121 @@ const Dashboard = () => {
       .catch((e) => alert("Invalid Request"));
   };
 
+  const handlePrice = () => {
+    const data = oemData.filter((e) => {
+      return e.price <= price;
+    });
+    if (data.length > 0) {
+      setAllData(data);
+    }
+  };
+
+  const handleMileage = () => {
+    const data = oemData.filter((e) => {
+      return e.mileage >= mileage;
+    });
+    if (data.length > 0) {
+      setAllData(data);
+    }
+  };
+
+  const handleColor = () => {
+    axios
+      .get(`http://localhost:4500/oem?color=${color}`)
+      .then((res) => setAllData(res.data))
+      .catch((e) => console.log(e));
+  };
+
+  const handleReset = () => {
+    setColor("");
+    setPrice("");
+    setMileage("");
+    getAllData();
+  };
+
   useEffect(() => {
     getAllData();
+    getOemData();
   }, []);
 
   return (
     <Box p={"5%"}>
-      <Text fontSize={"4xl"} fontWeight="bold" marginBottom="4%">
+      <Text fontSize={"4xl"} fontWeight="bold">
         Dashboard
       </Text>
+      <Text
+        fontSize={"2xl"}
+        fontWeight="semibold"
+        marginBottom="2%"
+        textAlign={"left"}
+      >
+        Total OEM spec cars - {oem}
+      </Text>
+
+      <Button
+        variant={"ghost"}
+        _hover={{ backgroundColor: "black", color: "white" }}
+        onClick={() => navigate("/add")}
+        margin={"-5% 0 0 90%"}
+      >
+        Add car
+      </Button>
+
+      <Box marginBottom={"3%"} display="flex" justifyContent={"space-around"}>
+        <Box w={"30%"}>
+          <Input
+            type={"number"}
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            placeholder="search by price. Enter in lakhs"
+          ></Input>
+          <Button
+            variant={"ghost"}
+            _hover={{ backgroundColor: "black", color: "white" }}
+            onClick={handlePrice}
+          >
+            Search Price
+          </Button>
+        </Box>
+        <Box w={"30%"}>
+          <Input
+            type={"number"}
+            value={mileage}
+            onChange={(e) => setMileage(e.target.value)}
+            placeholder="search by mileage. Enter in km/l"
+          ></Input>
+          <Button
+            variant={"ghost"}
+            _hover={{ backgroundColor: "black", color: "white" }}
+            onClick={handleMileage}
+          >
+            Search Mileage
+          </Button>
+        </Box>
+        <Box w={"30%"}>
+          <Input
+            type={"text"}
+            value={color}
+            onChange={(e) => setColor(e.target.value)}
+            placeholder="search by color"
+          ></Input>
+          <Button
+            variant={"ghost"}
+            _hover={{ backgroundColor: "black", color: "white" }}
+            onClick={handleColor}
+          >
+            Search by Color
+          </Button>
+        </Box>
+        <Button
+          variant={"ghost"}
+          _hover={{ backgroundColor: "black", color: "white" }}
+          onClick={handleReset}
+        >
+          Reset
+        </Button>
+      </Box>
+
       {toggle ? (
         <Box marginBottom={"5%"}>
           <Text my={"2%"} fontWeight="bold" fontSize={"xl"}>
@@ -165,7 +290,7 @@ const Dashboard = () => {
             <Box
               textAlign={"left"}
               margin="auto"
-              border={"1px solid black"}
+              boxShadow={"5px 5px 5px gray"}
               p="2%"
               height={"100%"}
             >
