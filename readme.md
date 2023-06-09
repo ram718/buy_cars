@@ -5,10 +5,10 @@ This web application is an online platform where buyers can buy used cars from t
 ## Authentication
 
 - Any user can signup using email and password once.
-  Api endpoint for signup -
+  Api endpoint for signup - https://agile-jeans-toad.cyclic.app/register
 
 - The user can login using the same email and password that is used at the time of registration
-  Api endpoint for login -
+  Api endpoint for login - https://agile-jeans-toad.cyclic.app/login
 
 - The passwords are encrypted and only the user can know the original password.
 
@@ -19,8 +19,8 @@ This web application is an online platform where buyers can buy used cars from t
 
 - Api endpoints to post and get routes are:
 
-1. Post route -
-2. Get route -
+1. Post route - https://agile-jeans-toad.cyclic.app/oem/add
+2. Get route - https://agile-jeans-toad.cyclic.app/oem?name=Honda City
 
 - The Get api has queries like name, year and color to get the required data from the server.
 
@@ -49,10 +49,10 @@ This web application is an online platform where buyers can buy used cars from t
 
 - The api end points are:
 
-1. Post route -
-2. Get route -
-3. Patch route -
-4. Delete route -
+1. Post route - https://agile-jeans-toad.cyclic.app/market/add
+2. Get route - https://agile-jeans-toad.cyclic.app/market
+3. Patch route - https://agile-jeans-toad.cyclic.app/market/update/:id
+4. Delete route - https://agile-jeans-toad.cyclic.app/market/delete/:id
 
 ## Car Details
 
@@ -64,8 +64,20 @@ This web application is an online platform where buyers can buy used cars from t
 
 - There are only Post and Get routes for the car details
 
-1. Post route -
-2. Get route -
+1. Post route - https://agile-jeans-toad.cyclic.app/carDetails/add
+2. Get route - https://agile-jeans-toad.cyclic.app/carDetails
+
+### OEM Spec Cars Available
+
+- BMW 320 (2019)
+- Audi A7 (2021)
+- Maruti Swift (2015)
+- Mercedes E220 (2022)
+- Honda City (2015)
+- Maruti Brezza (2018)
+- Audi A4 (2013)
+- BMW M5 (2023)
+- Mercedes C220 (2014)
 
 # Frontend
 
