@@ -215,7 +215,7 @@ const Dashboard = () => {
         marginBottom="2%"
         textAlign={{ base: "center", lg: "left" }}
       >
-        Total OEM spec cars - {oem}
+        Total OEM Spec cars - {oem}
       </Text>
 
       <Button

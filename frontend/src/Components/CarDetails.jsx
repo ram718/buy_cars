@@ -29,8 +29,8 @@ const CarDetails = () => {
         {data.description?.map((e) => {
           return <Text key={e}>◻︎ {e}</Text>;
         })}
-        <Image src={data.image} width="100%"></Image>
       </Box>
+      <Image src={data.image} width="100%"></Image>
       <Button
         variant={"ghost"}
         _hover={{ backgroundColor: "black", color: "white" }}
