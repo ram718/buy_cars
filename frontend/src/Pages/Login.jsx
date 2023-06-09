@@ -37,7 +37,7 @@ const Login = () => {
       .catch((e) =>
         toast({
           title: "Invalid",
-          description: "Wrong credentials / SOmething went wrong.",
+          description: "Wrong credentials / Something went wrong.",
           status: "error",
           position: "top-right",
           duration: 6000,

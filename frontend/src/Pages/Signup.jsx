@@ -37,7 +37,7 @@ const Signup = () => {
       .catch((e) =>
         toast({
           title: "Invalid Request",
-          description: "Something went wrong.",
+          description: "Something went wrong. / User already exists.",
           status: "error",
           position: "top-right",
           duration: 6000,

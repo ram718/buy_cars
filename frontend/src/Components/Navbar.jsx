@@ -57,6 +57,7 @@ const Navbar = () => {
             <Button
               variant={"ghost"}
               _hover={{ backgroundColor: "black", color: "white" }}
+              onClick={() => localStorage.removeItem("token")}
             >
               Logout
             </Button>
