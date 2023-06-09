@@ -6,6 +6,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
@@ -29,6 +30,7 @@ const Dashboard = () => {
   const [price, setPrice] = useState("");
   const [color, setColor] = useState("");
   const [mileage, setMileage] = useState("");
+  const toast = useToast();
 
   const getOemData = () => {
     axios
@@ -63,9 +65,23 @@ const Dashboard = () => {
       .then((res) => res.json())
       .then((res) => {
         getAllData();
-        alert(res.msg);
+        toast({
+          title: res.msg,
+          status: res.msg === "Not authorised" ? "error" : "success",
+          position: "top",
+          duration: 6000,
+          isClosable: true,
+        });
       })
-      .catch((e) => alert("Invalid Request / Not Authorised to delete"));
+      .catch((e) =>
+        toast({
+          title: "Not authorised",
+          status: "error",
+          position: "top",
+          duration: 6000,
+          isClosable: true,
+        })
+      );
   };
 
   const handleEdit = (id) => {
@@ -73,7 +89,13 @@ const Dashboard = () => {
     setEditData(data);
     setUpdateID(id);
     if (toggle === false) {
-      alert("Fill out the form on top to update the car details");
+      toast({
+        title: "Fill out the form on top to update the car details",
+        status: "warning",
+        position: "top",
+        duration: 6000,
+        isClosable: true,
+      });
     }
   };
 
@@ -104,7 +126,13 @@ const Dashboard = () => {
         setPaint("");
         setPlace("");
         setScratches("");
-        alert(res.msg);
+        toast({
+          title: res.msg,
+          status: "info",
+          position: "top",
+          duration: 6000,
+          isClosable: true,
+        });
       })
       .catch((e) => alert("Invalid Request"));
   };
@@ -116,6 +144,13 @@ const Dashboard = () => {
     if (data.length > 0) {
       setAllData(data);
     }
+    toast({
+      title: `Showing cars of price with equal or under ${price} lakhs`,
+      status: "info",
+      position: "top",
+      duration: 3000,
+      isClosable: true,
+    });
   };
 
   const handleMileage = () => {
@@ -125,12 +160,28 @@ const Dashboard = () => {
     if (data.length > 0) {
       setAllData(data);
     }
+    toast({
+      title: `Showing cars of mileage with equal or above ${mileage} km/l`,
+      status: "info",
+      position: "top",
+      duration: 3000,
+      isClosable: true,
+    });
   };
 
   const handleColor = () => {
     axios
       .get(`http://localhost:4500/oem?color=${color}`)
-      .then((res) => setAllData(res.data))
+      .then((res) => {
+        setAllData(res.data);
+        toast({
+          title: `Showing cars with ${color} color`,
+          status: "info",
+          position: "top",
+          duration: 3000,
+          isClosable: true,
+        });
+      })
       .catch((e) => console.log(e));
   };
 
@@ -139,6 +190,13 @@ const Dashboard = () => {
     setPrice("");
     setMileage("");
     getAllData();
+    toast({
+      title: `Filters have been removed`,
+      status: "info",
+      position: "top-right",
+      duration: 3000,
+      isClosable: true,
+    });
   };
 
   useEffect(() => {
@@ -155,7 +213,7 @@ const Dashboard = () => {
         fontSize={"2xl"}
         fontWeight="semibold"
         marginBottom="2%"
-        textAlign={"left"}
+        textAlign={{ base: "center", lg: "left" }}
       >
         Total OEM spec cars - {oem}
       </Text>
@@ -164,13 +222,18 @@ const Dashboard = () => {
         variant={"ghost"}
         _hover={{ backgroundColor: "black", color: "white" }}
         onClick={() => navigate("/add")}
-        margin={"-5% 0 0 90%"}
+        margin={{ base: "auto", md: "-5% 0 0 70%", lg: "-5% 0 0 90%" }}
       >
         Add car
       </Button>
 
-      <Box marginBottom={"3%"} display="flex" justifyContent={"space-around"}>
-        <Box w={"30%"}>
+      <Box
+        marginBottom={"3%"}
+        display={{ md: "flex", lg: "flex" }}
+        justifyContent={{ lg: "space-around" }}
+        gap="20px"
+      >
+        <Box w={"30%"} margin={{ base: "auto" }}>
           <Input
             type={"number"}
             value={price}
@@ -185,7 +248,7 @@ const Dashboard = () => {
             Search Price
           </Button>
         </Box>
-        <Box w={"30%"}>
+        <Box w={"30%"} margin={{ base: "auto" }}>
           <Input
             type={"number"}
             value={mileage}
@@ -200,7 +263,7 @@ const Dashboard = () => {
             Search Mileage
           </Button>
         </Box>
-        <Box w={"30%"}>
+        <Box w={"30%"} margin={{ base: "auto" }}>
           <Input
             type={"text"}
             value={color}
@@ -219,6 +282,7 @@ const Dashboard = () => {
           variant={"ghost"}
           _hover={{ backgroundColor: "black", color: "white" }}
           onClick={handleReset}
+          w={{ base: "30%", md: "20%", lg: "10%" }}
         >
           Reset
         </Button>
@@ -278,11 +342,13 @@ const Dashboard = () => {
         </Box>
       ) : null}
       <Box
-        style={{
-          display: "Grid",
-          gridTemplateColumns: "repeat(2,1fr)",
-          gap: "20px",
+        display={"grid"}
+        gridTemplateColumns={{
+          base: "repeat(1,1fr)",
+          md: "repeat(2,1fr)",
+          lg: "repeat(2,1fr)",
         }}
+        gap="20px"
       >
         {allData?.map((e) => {
           return (
@@ -299,6 +365,7 @@ const Dashboard = () => {
                 display="flex"
                 justifyContent={"space-evenly"}
                 marginTop="5%"
+                w={"100%"}
               >
                 <Button
                   variant={"ghost"}

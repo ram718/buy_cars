@@ -6,6 +6,7 @@ import {
   FormLabel,
   Input,
   Button,
+  useToast,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
@@ -18,6 +19,7 @@ const AddCar = () => {
   const [place, setPlace] = useState("");
   const [name, setName] = useState("");
   const navigate = useNavigate();
+  const toast = useToast();
 
   const handleAdd = () => {
     const payload = {
@@ -39,7 +41,14 @@ const AddCar = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        alert(res.msg);
+        toast({
+          title: "Car added.",
+          description: "New car details are added to the dashboard",
+          status: "info",
+          position: "bottom",
+          duration: 6000,
+          isClosable: true,
+        });
         setAccidents("");
         setBuyers("");
         setKm("");
@@ -115,7 +124,7 @@ const AddCar = () => {
           _hover={{ backgroundColor: "black", color: "white" }}
           onClick={handleAdd}
         >
-          Add
+          ➕ Add
         </Button>
       </Box>
     </Box>

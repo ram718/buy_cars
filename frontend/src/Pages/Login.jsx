@@ -5,6 +5,7 @@ import {
   FormLabel,
   Button,
   FormControl,
+  useToast,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -15,6 +16,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const toast = useToast();
 
   const handleLogin = () => {
     const paylaod = { email, password };
@@ -22,11 +24,25 @@ const Login = () => {
       .post(`http://localhost:4500/login`, paylaod)
       .then((res) => {
         localStorage.setItem("token", JSON.stringify(res.data.token));
-        alert("Login succesfully");
+        toast({
+          title: "Logged in",
+          description: "Login is successful",
+          status: "success",
+          position: "top-right",
+          duration: 6000,
+          isClosable: true,
+        });
         navigate("/dashboard");
       })
       .catch((e) =>
-        alert("Something went wrong,please try again / Wrong Credentials")
+        toast({
+          title: "Invalid",
+          description: "Wrong credentials / SOmething went wrong.",
+          status: "error",
+          position: "top-right",
+          duration: 6000,
+          isClosable: true,
+        })
       );
   };
 
@@ -35,19 +51,19 @@ const Login = () => {
   }, []);
 
   return (
-    <Box bgImage={buyCars} bgSize="cover">
+    <Box padding={"1% 0 10% 0"} bgColor={"lightcyan"}>
       <Text my={"5%"} fontSize={"4xl"} fontWeight="bold">
         Login
       </Text>
       <Box w="30%" margin={"auto"} py={"3%"}>
         <FormControl>
-          <FormLabel color={"white"}>Email:</FormLabel>
+          <FormLabel>Email:</FormLabel>
           <Input
             type={"text"}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           ></Input>
-          <FormLabel color={"white"}>Password:</FormLabel>
+          <FormLabel>Password:</FormLabel>
           <Input
             type={"password"}
             value={password}

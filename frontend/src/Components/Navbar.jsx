@@ -8,24 +8,30 @@ const Navbar = () => {
   const token = JSON.parse(localStorage.getItem("token"));
   return (
     <Box
-      display={"flex"}
+      display={{ md: "flex", lg: "flex" }}
       p="2%"
-      marginBottom="1%"
-      boxShadow={"10px 10px 5px lightblue"}
+      marginBottom={"1%"}
+      boxShadow={{
+        base: "5px 5px 5px lightblue",
+        md: "10px 10px 5px lightblue",
+        lg: "10px 10px 5px lightblue",
+      }}
     >
-      <Box w={"30%"}>
+      <Box w={{ lg: "30%" }}>
         <Image
           onClick={() => navigate("/dashboard")}
-          paddingLeft={"5%"}
+          paddingLeft={{ lg: "5%" }}
           src={Buy_Car}
-          width="30%"
+          margin={{ base: "auto" }}
+          width={{ base: "50%", lg: "30%" }}
           _hover={{ cursor: "pointer" }}
         ></Image>
       </Box>
       <Box
-        style={{ display: "flex", justifyContent: "space-around" }}
-        w="70%"
-        paddingTop={"1%"}
+        display={{ md: "flex", lg: "flex" }}
+        justifyContent={{ md: "space-evenly", lg: "space-evenly" }}
+        w={{ base: "100%", lg: "70%" }}
+        paddingTop={{ base: "5%", md: "1%", lg: "1%" }}
       >
         <Button
           variant={"ghost"}
