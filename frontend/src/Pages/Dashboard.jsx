@@ -34,7 +34,7 @@ const Dashboard = () => {
 
   const getOemData = () => {
     axios
-      .get(`http://localhost:4500/oem`)
+      .get(`https://agile-jeans-toad.cyclic.app/oem`)
       .then((res) => {
         setOem(res.data.length);
         setOemData(res.data.data);
@@ -44,7 +44,7 @@ const Dashboard = () => {
 
   const getAllData = () => {
     axios
-      .get(`http://localhost:4500/market`)
+      .get(`https://agile-jeans-toad.cyclic.app/market`)
       .then((res) => setAllData(res.data))
       .catch((e) => console.log(e));
   };
@@ -55,7 +55,7 @@ const Dashboard = () => {
   };
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:4500/market/delete/${id}`, {
+    fetch(`https://agile-jeans-toad.cyclic.app/market/delete/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -108,7 +108,7 @@ const Dashboard = () => {
       number_of_previous_buyers: buyers,
       registration_place: place,
     };
-    fetch(`http://localhost:4500/market/update/${updateID}`, {
+    fetch(`https://agile-jeans-toad.cyclic.app/market/update/${updateID}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -171,7 +171,7 @@ const Dashboard = () => {
 
   const handleColor = () => {
     axios
-      .get(`http://localhost:4500/oem?color=${color}`)
+      .get(`https://agile-jeans-toad.cyclic.app/oem?color=${color}`)
       .then((res) => {
         setAllData(res.data);
         toast({

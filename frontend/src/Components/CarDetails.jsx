@@ -11,7 +11,7 @@ const CarDetails = () => {
 
   const getData = () => {
     axios
-      .get(`http://localhost:4500/carDetails?name=${name}`)
+      .get(`https://agile-jeans-toad.cyclic.app/carDetails?name=${name}`)
       .then((res) => setData(res.data))
       .catch((e) => console.log(e));
   };

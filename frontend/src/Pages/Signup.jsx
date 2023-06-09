@@ -22,7 +22,7 @@ const Signup = () => {
   const handleSignup = () => {
     const paylaod = { email, password };
     axios
-      .post(`http://localhost:4500/register`, paylaod)
+      .post(`https://agile-jeans-toad.cyclic.app/register`, paylaod)
       .then((res) => {
         toast({
           title: "Account created.",

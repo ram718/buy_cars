@@ -21,7 +21,7 @@ const Login = () => {
   const handleLogin = () => {
     const paylaod = { email, password };
     axios
-      .post(`http://localhost:4500/login`, paylaod)
+      .post(`https://agile-jeans-toad.cyclic.app/login`, paylaod)
       .then((res) => {
         localStorage.setItem("token", JSON.stringify(res.data.token));
         toast({

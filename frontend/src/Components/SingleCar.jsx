@@ -18,7 +18,7 @@ const SingleCar = ({
 
   const getOemData = () => {
     axios
-      .get(`http://localhost:4500/oem?name=${name}`)
+      .get(`https://agile-jeans-toad.cyclic.app/oem?name=${name}`)
       .then((res) => setOemData(res.data.data))
       .catch((e) => console.log(e));
   };
