@@ -70,3 +70,21 @@ This web application is an online platform where buyers can buy used cars from t
 # Frontend
 
 - There are majorly 4 pages that combines the entire website
+
+### Signup Page
+
+<img width="1440" alt="Screenshot 2023-06-09 at 11 58 10 AM" src="https://github.com/ram718/buy_cars/assets/110825928/5468b1bb-16dd-4ee2-93ea-078587858c2b">
+
+### Login Page
+<img width="1440" alt="Screenshot 2023-06-09 at 11 57 43 AM" src="https://github.com/ram718/buy_cars/assets/110825928/943690ad-3ae9-459e-bf12-8f7519176f94">
+
+### Add Cars Page
+<img width="1440" alt="Screenshot 2023-06-09 at 11 58 57 AM" src="https://github.com/ram718/buy_cars/assets/110825928/2a6f9ef4-bef2-4424-8e40-315331c1f639">
+
+
+### Dashboard Page
+<img width="1440" alt="Screenshot 2023-06-09 at 11 58 40 AM" src="https://github.com/ram718/buy_cars/assets/110825928/e7d073e3-978a-4119-903e-eba240c64adf">
+
+<img width="1440" alt="Screenshot 2023-06-09 at 11 58 48 AM" src="https://github.com/ram718/buy_cars/assets/110825928/b83031a1-3567-47fc-bc9d-882e01a52423">
+
+- The backend API's are used to build the frontend part of this full stack application.
