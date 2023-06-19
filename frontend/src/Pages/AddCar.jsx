@@ -31,7 +31,7 @@ const AddCar = () => {
       number_of_previous_buyers: buyers,
       registration_place: place,
     };
-    fetch(`https://agile-jeans-toad.cyclic.app/market/add`, {
+    fetch(`${process.env.REACT_APP_API_URL}/market/add`, {
       method: "POST",
       headers: {
         Authorization: JSON.parse(localStorage.getItem("token")),

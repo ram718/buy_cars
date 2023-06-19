@@ -11,7 +11,7 @@ const CarDetails = () => {
 
   const getData = () => {
     axios
-      .get(`https://agile-jeans-toad.cyclic.app/carDetails?name=${name}`)
+      .get(`${process.env.REACT_APP_API_URL}/carDetails?name=${name}`)
       .then((res) => setData(res.data))
       .catch((e) => console.log(e));
   };

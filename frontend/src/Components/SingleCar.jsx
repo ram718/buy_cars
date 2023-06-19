@@ -18,7 +18,7 @@ const SingleCar = ({
 
   const getOemData = () => {
     axios
-      .get(`https://agile-jeans-toad.cyclic.app/oem?name=${name}`)
+      .get(`${process.env.REACT_APP_API_URL}/oem?name=${name}`)
       .then((res) => setOemData(res.data.data))
       .catch((e) => console.log(e));
   };

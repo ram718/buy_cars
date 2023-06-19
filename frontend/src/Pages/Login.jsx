@@ -10,7 +10,6 @@ import {
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import buyCars from "../Images/buyCars.jpg";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -21,7 +20,7 @@ const Login = () => {
   const handleLogin = () => {
     const paylaod = { email, password };
     axios
-      .post(`https://agile-jeans-toad.cyclic.app/login`, paylaod)
+      .post(`${process.env.REACT_APP_API_URL}/login`, paylaod)
       .then((res) => {
         localStorage.setItem("token", JSON.stringify(res.data.token));
         toast({

@@ -11,7 +11,6 @@ import {
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import buyCars from "../Images/buyCars.jpg";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -22,7 +21,7 @@ const Signup = () => {
   const handleSignup = () => {
     const paylaod = { email, password };
     axios
-      .post(`https://agile-jeans-toad.cyclic.app/register`, paylaod)
+      .post(`${process.env.REACT_APP_API_URL}/register`, paylaod)
       .then((res) => {
         toast({
           title: "Account created.",
